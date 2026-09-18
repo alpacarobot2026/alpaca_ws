@@ -1,0 +1,41 @@
+########### collision in motion capture ###########
+RGBstamp: 1714682396.011561, TFstamp : 1714682396.1504757              
+RGBstamp diff: 0.03342175483703613
+block 1 pos: (-0.0028345459140837193, 0.4587917923927307, 1.4058678150177002), block_1 wrt map              
+block 2 pos: (-0.11037943512201309, 0.46151626110076904, 1.4030998945236206), block_2 wrt map
+relative pos: 0.10754488920792937, -0.00272446870803833, 0.00276792049407959, lower distance: True, dist: 0.10761499574106032
+
+RGBstamp: 1714682396.0449831, TFstamp : 1714682396.2006276              
+RGBstamp diff: 0.033422231674194336
+block 1 pos: (0.004091651178896427, 0.47439685463905334, 1.4102767705917358), block_1 wrt map              
+block 2 pos: (-0.13300740718841553, 0.4701598882675171, 1.402254343032837), block_2 wrt map
+relative pos: 0.13709905836731195, 0.004236966371536255, 0.008022427558898926, lower distance: False
+              
+RGBstamp: 1714682396.0784059, TFstamp : 1714682396.2504935              
+RGBstamp diff: 0.03342270851135254
+block 1 pos: (0.026158234104514122, 0.4684450030326843, 1.4184008836746216), block_1 wrt map              
+block 2 pos: (-0.16802100837230682, 0.46786564588546753, 1.403780460357666), block_2 wrt map
+relative pos: 0.19417924247682095, 0.0005793571472167969, 0.014620423316955566, lower distance: False
+
+########### close ###############
+RGBstamp: 1714682396.1118288, TFstamp : 1714682396.3089771              
+RGBstamp diff: 0.03342294692993164
+block 1 pos: (0.07444290816783905, 0.459210604429245, 1.4347505569458008), block_1 wrt map              
+block 2 pos: (-0.22293594479560852, 0.45345374941825867, 1.4159646034240723), block_2 wrt map
+relative pos: 0.29737885296344757, 0.005756855010986328, 0.018785953521728516, lower distance: False
+              
+########### collison in camera ############
+RGBstamp: 1714682396.1452522, TFstamp : 1714682396.3591323              
+RGBstamp diff: 0.033423423767089844
+block 1 pos: (0.1193103939294815, 0.44841909408569336, 1.4438658952713013), block_1 wrt map              
+block 2 pos: (-0.2720080614089966, 0.4431183338165283, 1.4266551733016968), block_2 wrt map
+relative pos: 0.3913184553384781, 0.005300760269165039, 0.017210721969604492, lower distance: False
+
+----------------------------------------------------------------------------------------------------------
+Collision based on TF:
+ROS timestamp 1714682396.1506824, TF timestamp 1714682396.1504757
+Collision based on Image:
+ROS timestamp 1714682396.3700619, RGB timestamp 1714682396.1452522  (blocks close, previous frame of collison)
+ROS timestamp 1714682396.4196649, RGB timestamp 1714682396.178676   (blocks collision)
+
+So we can assume the Camera and the Mocap receive bump signal simultaneously

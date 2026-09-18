@@ -1,0 +1,41 @@
+# MPPI controller parameters loaded by mppi_controller_node.py --params-file
+# DT / horizon_length / num_sample left unset → fall back to mppi_config.py constants
+# Lab params
+mppi:
+  # Noise covariance
+  cov_x: 0.5
+  cov_z: 0.04  # 0.02, 0.015 worked well in lab
+
+  # Temperature
+  lambda_: 0.18 # worked well in lab
+
+  # Goal costs
+  goal_weight: 2000 #6000
+  terminal_goal_weight: 100
+
+  # Action smoothness costs
+  action_weight: 100 #500
+  action_t_weight: 50
+  control_x_weight: 0
+
+  # Steering costs
+  steering_weight: 100 # 500 #1000
+  steering_t_weight: 200
+  control_z_weight: 200
+
+  # Social / crowd costs
+  sm_weight: 0
+  cv_weight: 0 #100, #10000, 3000 worked well in lab
+
+  # Costmap / collision costs
+  costmap_weight: 100 #20, #50, #200, #500, #700
+  sigma_collision: 0.15 #0.25, 0.15 worked well in lab, 0.1 is more conservative and safer for real world
+  beta_collision: 3.0
+  decay_rate: -0.000001 # discount factor = exp(decay_rate * t)
+
+  # Heading cost
+  heading_weight: 800
+
+  # Control filters (EMA alpha)
+  alpha_x: 0.1
+  alpha_z: 0.3

@@ -1,0 +1,23 @@
+# Human Scene Transformer prediction environment (/opt/venvs/hst).
+#
+# This cannot share the main environment: TensorFlow 2.13 requires
+# numpy<=1.24.3, while the controller runs torch 2.6 with numpy 1.26.
+--extra-index-url https://download.pytorch.org/whl/cu117
+
+numpy==1.24.3
+protobuf==4.25.8
+tensorflow==2.13.1
+gin-config==0.5.0
+einops
+
+# Vendored MoFlow backend (alpaca_navigation/prediction/backends/moflow)
+easydict
+tensorboardX
+tqdm
+matplotlib
+
+torch==2.0.1+cu117
+
+scipy
+psutil
+PyYAML

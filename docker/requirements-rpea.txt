@@ -1,0 +1,18 @@
+# RPEA detector environment (/opt/venvs/rpea).
+#
+# torch is pinned to 1.13.1 because that is what torchsparse 1.x and the RPEA
+# checkpoint need. torchsparse and iou3d come from wheels compiled against this
+# exact torch in the builder stage.
+--extra-index-url https://download.pytorch.org/whl/cu117
+
+numpy==1.26.4
+torch==1.13.1+cu117
+
+scipy
+pyquaternion
+tqdm
+tensorboardX
+shapely
+
+# lidar_det/dataset/handles/_pypcd.py imports this as `lzf` for compressed .pcd files.
+python-lzf

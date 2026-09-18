@@ -1,0 +1,56 @@
+# Main ROS environment (system python3). Installed system-wide so the
+# colcon-installed nodes import these directly.
+#
+# Hard pins are the ones that actually constrain each other: numpy stays <2 for
+# numba and the ROS message converters, and torch matches the CUDA wheels.
+--extra-index-url https://download.pytorch.org/whl/cu124
+
+numpy==1.26.4
+numba==0.62.1
+scipy
+matplotlib
+
+# MPPI controller (alpaca_navigation)
+torch==2.6.0+cu124
+pytorch_mppi==0.8.0
+arm_pytorch_utilities
+pytorch-seed
+
+# SimpleTrack tracker (alpaca_detection)
+filterpy
+shapely
+pyquaternion
+
+# apt's python3-transforms3d (a tf_transformations/ros2_numpy dependency) still
+# calls the np.float alias, removed in the numpy pinned above. This newer
+# version drops that call and shadows the apt copy (pip installs ahead of apt
+# on sys.path).
+transforms3d>=0.4.1
+
+# Voice interaction (alpaca_interaction/guidebot_openai.py)
+openai
+sounddevice
+websockets
+fastapi
+pydantic
+
+# Speech/sound used by mppi_controller_node.
+# playsound is held at 1.2.2; later releases are broken on Linux.
+pyttsx3
+playsound==1.2.2
+
+# TalkNCE active-speaker detection (alpaca_interaction/talknce). numpy<2 and
+# cu124 torch above already match what TalkNCE needs, so it runs in this
+# env rather than a dedicated venv. opencv-python<4.10 is pinned because
+# 4.10+ requires numpy>=2; it shadows apt's python3-opencv (cv_bridge dep)
+# the same way the transforms3d pin above shadows apt's copy.
+mediapipe
+opencv-python<4.10
+resampy
+soundfile
+easydict
+pandas
+pyyaml
+
+psutil
+tqdm

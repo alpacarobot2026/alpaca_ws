@@ -1,0 +1,11 @@
+<root main_tree_to_execute="MainTree">
+  <BehaviorTree ID="MainTree">
+    <Sequence name="Navigate">
+      <!-- Compute a single global path once -->
+      <ComputePathToPose goal="{goal}" path="{path}" planner_id="GridBased"/>
+
+      <!-- Follow that path; no RateController, no DistanceController -->
+      <FollowPath path="{path}" controller_id="FollowPath"/>
+    </Sequence>
+  </BehaviorTree>
+</root>

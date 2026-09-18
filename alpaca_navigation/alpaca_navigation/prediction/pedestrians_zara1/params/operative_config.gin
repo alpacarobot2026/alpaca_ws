@@ -1,0 +1,189 @@
+# Parameters for min_ade/ADE:
+# ==============================================================================
+min_ade/ADE.at_cutoff = False
+min_ade/ADE.name = 'ADE'
+
+# Parameters for min_ade1s/ADE:
+# ==============================================================================
+min_ade1s/ADE.at_cutoff = False
+min_ade1s/ADE.name = 'ADE'
+
+# Parameters for min_ade2s/ADE:
+# ==============================================================================
+min_ade2s/ADE.at_cutoff = False
+min_ade2s/ADE.name = 'ADE'
+
+# Parameters for min_ade3s/ADE:
+# ==============================================================================
+min_ade3s/ADE.at_cutoff = False
+min_ade3s/ADE.name = 'ADE'
+
+# Parameters for ml_ade/ADE:
+# ==============================================================================
+ml_ade/ADE.at_cutoff = False
+ml_ade/ADE.name = 'ADE'
+
+# Parameters for ml_ade1s/ADE:
+# ==============================================================================
+ml_ade1s/ADE.at_cutoff = False
+ml_ade1s/ADE.name = 'ADE'
+
+# Parameters for ml_ade2s/ADE:
+# ==============================================================================
+ml_ade2s/ADE.at_cutoff = False
+ml_ade2s/ADE.name = 'ADE'
+
+# Parameters for ml_ade3s/ADE:
+# ==============================================================================
+ml_ade3s/ADE.at_cutoff = False
+ml_ade3s/ADE.name = 'ADE'
+
+# Parameters for get_metrics:
+# ==============================================================================
+get_metrics.eval_metrics = \
+    {'loss': @metrics.Mean,
+     'loss_orientation': @metrics.Mean,
+     'loss_position': @metrics.Mean,
+     'min_ade': @min_ade/metrics.ade.MinADE,
+     'min_ade1s': @min_ade1s/metrics.ade.MinADE,
+     'min_ade2s': @min_ade2s/metrics.ade.MinADE,
+     'min_ade3s': @min_ade3s/metrics.ade.MinADE,
+     'ml_ade': @ml_ade/metrics.ade.MLADE,
+     'ml_ade1s': @ml_ade1s/metrics.ade.MLADE,
+     'ml_ade2s': @ml_ade2s/metrics.ade.MLADE,
+     'ml_ade3s': @ml_ade3s/metrics.ade.MLADE,
+     'pos_nll': @pos_nll/metrics.pos_nll.PositionNegativeLogLikelihood,
+     'pos_nll1s': @pos_nll1s/metrics.pos_nll.PositionNegativeLogLikelihood,
+     'pos_nll2s': @pos_nll2s/metrics.pos_nll.PositionNegativeLogLikelihood,
+     'pos_nll3s': @pos_nll3s/metrics.pos_nll.PositionNegativeLogLikelihood}
+get_metrics.train_metrics = \
+    {'loss': @metrics.Mean,
+     'loss_orientation': @metrics.Mean,
+     'loss_position': @metrics.Mean,
+     'min_ade': @min_ade/metrics.ade.MinADE,
+     'min_ade1s': @min_ade1s/metrics.ade.MinADE,
+     'min_ade2s': @min_ade2s/metrics.ade.MinADE,
+     'min_ade3s': @min_ade3s/metrics.ade.MinADE,
+     'ml_ade': @ml_ade/metrics.ade.MLADE,
+     'ml_ade1s': @ml_ade1s/metrics.ade.MLADE,
+     'ml_ade2s': @ml_ade2s/metrics.ade.MLADE,
+     'ml_ade3s': @ml_ade3s/metrics.ade.MLADE,
+     'pos_nll': @pos_nll/metrics.pos_nll.PositionNegativeLogLikelihood,
+     'pos_nll1s': @pos_nll1s/metrics.pos_nll.PositionNegativeLogLikelihood,
+     'pos_nll2s': @pos_nll2s/metrics.pos_nll.PositionNegativeLogLikelihood,
+     'pos_nll3s': @pos_nll3s/metrics.pos_nll.PositionNegativeLogLikelihood}
+
+# Parameters for Mean:
+# ==============================================================================
+Mean.name = 'mean'
+
+# Parameters for min_ade/MinADE:
+# ==============================================================================
+min_ade/MinADE.cutoff_seconds = None
+
+# Parameters for min_ade1s/MinADE:
+# ==============================================================================
+min_ade1s/MinADE.cutoff_seconds = 1.0
+
+# Parameters for min_ade2s/MinADE:
+# ==============================================================================
+min_ade2s/MinADE.cutoff_seconds = 2.0
+
+# Parameters for min_ade3s/MinADE:
+# ==============================================================================
+min_ade3s/MinADE.cutoff_seconds = 3.0
+
+# Parameters for ml_ade/MLADE:
+# ==============================================================================
+ml_ade/MLADE.cutoff_seconds = None
+
+# Parameters for ml_ade1s/MLADE:
+# ==============================================================================
+ml_ade1s/MLADE.cutoff_seconds = 1.0
+
+# Parameters for ml_ade2s/MLADE:
+# ==============================================================================
+ml_ade2s/MLADE.cutoff_seconds = 2.0
+
+# Parameters for ml_ade3s/MLADE:
+# ==============================================================================
+ml_ade3s/MLADE.cutoff_seconds = 3.0
+
+# Parameters for ModelParams:
+# ==============================================================================
+ModelParams.agents_feature_config = {'agents/position': @AgentPositionEncoder}
+ModelParams.agents_orientation_key = 'agents/orientation'
+ModelParams.agents_position_key = 'agents/position'
+ModelParams.attn_architecture = \
+    ('self-attention',
+     'self-attention',
+     'multimodality_induction',
+     'self-attention',
+     'self-attention-mode',
+     'self-attention',
+     'self-attention-mode')
+ModelParams.drop_prob = 0.2
+ModelParams.feature_embedding_size = 128
+ModelParams.hidden_size = 64
+ModelParams.is_hidden_generator = @BPIsHiddenGenerator
+ModelParams.ln_eps = 1e-06
+ModelParams.mask_style = 'has_historic_data'
+ModelParams.num_conv_filters = (32, 32, 64, 64, 128)
+ModelParams.num_heads = 4
+ModelParams.num_history_steps = 7
+ModelParams.num_modes = 20
+ModelParams.num_steps = 20
+ModelParams.prediction_head = @Prediction2DPositionHeadLayer
+ModelParams.prediction_head_hidden_units = None
+ModelParams.scene_encoder = None
+ModelParams.timestep = 0.4
+ModelParams.transformer_ff_dim = 64
+
+# Parameters for PedestriansDatasetParams:
+# ==============================================================================
+PedestriansDatasetParams.dataset = 'zara1'
+PedestriansDatasetParams.eval_config = 'val'
+PedestriansDatasetParams.num_agents = 14
+PedestriansDatasetParams.num_history_steps = 7
+PedestriansDatasetParams.num_steps = 20
+PedestriansDatasetParams.path = \
+    '/cns/is-d/home/tsal/social_nav/datasets/pedestrians/'
+PedestriansDatasetParams.timestep = 0.4
+PedestriansDatasetParams.train_config = 'train'
+
+# Parameters for pos_nll/PositionNegativeLogLikelihood:
+# ==============================================================================
+pos_nll/PositionNegativeLogLikelihood.at_cutoff = False
+pos_nll/PositionNegativeLogLikelihood.cutoff_seconds = None
+pos_nll/PositionNegativeLogLikelihood.name = 'PosNLL'
+
+# Parameters for pos_nll1s/PositionNegativeLogLikelihood:
+# ==============================================================================
+pos_nll1s/PositionNegativeLogLikelihood.at_cutoff = False
+pos_nll1s/PositionNegativeLogLikelihood.cutoff_seconds = 1.0
+pos_nll1s/PositionNegativeLogLikelihood.name = 'PosNLL'
+
+# Parameters for pos_nll2s/PositionNegativeLogLikelihood:
+# ==============================================================================
+pos_nll2s/PositionNegativeLogLikelihood.at_cutoff = False
+pos_nll2s/PositionNegativeLogLikelihood.cutoff_seconds = 2.0
+pos_nll2s/PositionNegativeLogLikelihood.name = 'PosNLL'
+
+# Parameters for pos_nll3s/PositionNegativeLogLikelihood:
+# ==============================================================================
+pos_nll3s/PositionNegativeLogLikelihood.at_cutoff = False
+pos_nll3s/PositionNegativeLogLikelihood.cutoff_seconds = 3.0
+pos_nll3s/PositionNegativeLogLikelihood.name = 'PosNLL'
+
+# Parameters for TrainingParams:
+# ==============================================================================
+TrainingParams.batch_size = 16
+TrainingParams.batches_per_eval_step = 2000
+TrainingParams.batches_per_train_step = 25000
+TrainingParams.eval_every_n_step = 10000.0
+TrainingParams.global_clipnorm = None
+TrainingParams.loss = @MinNLLPositionMixtureCategoricalCrossentropyLoss
+TrainingParams.peak_learning_rate = 0.0005
+TrainingParams.shuffle_buffer_size = 10000
+TrainingParams.total_train_steps = 1000000.0
+TrainingParams.warmup_steps = 50000.0

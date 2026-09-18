@@ -1,0 +1,16 @@
+# Packages the alpaca launch files import that are not in this repo.
+# Pinned to the commits in use on the development machine.
+repositories:
+  ros2_numpy:
+    type: git
+    url: https://github.com/Box-Robotics/ros2_numpy.git
+    version: d665add22e6a9070e88d9514bbf0dcbcb122a3dc
+  # ranger_ros2 is NOT listed here - the commit the development machine
+  # actually runs (4357bdf, with RCState.msg/rc_state and .launch.xml files)
+  # isn't on any branch, so vcs import's plain `git clone` can't reach it.
+  # humble.Dockerfile fetches and checks it out by exact SHA directly
+  # instead (GitHub still serves it that way); see the comment there.
+  ugv_sdk:
+    type: git
+    url: https://github.com/westonrobot/ugv_sdk.git
+    version: 58436e9c1732474566e249ce7f726e12e26304d6

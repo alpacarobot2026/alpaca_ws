@@ -1,0 +1,53 @@
+# Convenience wrapper. Everything here is also achievable with plain
+# `docker run`; see docker/README.md.
+services:
+  alpaca:
+    image: ros:alpaca-humble
+    build:
+      context: ..
+      dockerfile: docker/humble.Dockerfile
+    network_mode: host
+    ipc: host
+    privileged: true          # USB/serial access for the base and the LiDAR
+    environment:
+      - ROS_DOMAIN_ID=${ROS_DOMAIN_ID:-0}
+      - DISPLAY=${DISPLAY:-}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - NVIDIA_DRIVER_CAPABILITIES=all
+      # The X11 socket below gets the container to the display, but the X
+      # server still checks the MIT-MAGIC-COOKIE in this file before letting
+      # a client (the container runs as root, a different user than whoever
+      # owns the host session) draw anything. ~/.Xauthority is NOT it on a
+      # GDM host: GDM starts Xorg with its own -auth file under
+      # $XDG_RUNTIME_DIR/gdm/Xauthority (check `ps aux | grep Xorg` for the
+      # -auth path if this doesn't match; override ALPACA_XAUTHORITY if so).
+      - XAUTHORITY=/root/.Xauthority
+      # TalkNCE's default audio backend (alpaca_interaction/talknce) captures
+      # via parec, which talks to the host's PulseAudio/PipeWire over this
+      # socket rather than a container-local audio daemon.
+      - PULSE_SERVER=unix:${XDG_RUNTIME_DIR:-/run/user/1000}/pulse/native
+    volumes:
+      # Model weights and checkpoints, including RPEA_JRDB2022.pth and
+      # UniTalk_TalkNCE.model.
+      - ${ALPACA_MODELS_DIR:-${HOME}/alpaca_ws/models}:/models:ro
+      # Map yaml/pgm pairs for Nav2. Not baked into the image since maps
+      # change per building/session; point ALPACA_MAPS_DIR at wherever they
+      # live on the host.
+      - ${ALPACA_MAPS_DIR:-${HOME}/alpaca_ws/data/maps}:/maps:ro
+      # GUI tools (rviz2, rqt, alpaca_interaction's face display).
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - ${ALPACA_XAUTHORITY:-${XDG_RUNTIME_DIR:-/run/user/1000}/gdm/Xauthority}:/root/.Xauthority:ro
+      # Host PulseAudio/PipeWire socket, for TalkNCE's mic capture.
+      - ${XDG_RUNTIME_DIR:-/run/user/1000}/pulse:${XDG_RUNTIME_DIR:-/run/user/1000}/pulse:rw
+      # Uncomment to match the host's ZED SDK, needed only for the ZED camera.
+      # - /usr/local/zed:/usr/local/zed:ro
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    stdin_open: true
+    tty: true
+    command: bash

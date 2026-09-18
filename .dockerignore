@@ -1,0 +1,11 @@
+.git
+**/__pycache__
+**/*.pyc
+**/*.egg-info
+**/build
+**/install
+**/log
+**/*.pth
+**/*.onnx
+**/*.npz
+docker/README.md

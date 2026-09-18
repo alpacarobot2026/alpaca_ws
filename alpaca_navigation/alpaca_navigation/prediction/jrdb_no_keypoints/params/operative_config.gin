@@ -1,0 +1,269 @@
+# Macros:
+# ==============================================================================
+TEST_SCENES = \
+    ['clark-center-2019-02-28_1',
+     'forbes-cafe-2019-01-22_0',
+     'gates-basement-elevators-2019-01-17_1',
+     'huang-2-2019-01-25_0',
+     'jordan-hall-2019-04-22_0',
+     'nvidia-aud-2019-04-18_0',
+     'packard-poster-session-2019-03-20_2',
+     'svl-meeting-gates-2-2019-04-08_1',
+     'tressider-2019-04-26_2',
+     'discovery-walk-2019-02-28_1_test',
+     'gates-basement-elevators-2019-01-17_0_test',
+     'hewlett-class-2019-01-23_0_test',
+     'huang-intersection-2019-01-22_0_test',
+     'meyer-green-2019-03-16_1_test',
+     'nvidia-aud-2019-04-18_2_test',
+     'serra-street-2019-01-30_0_test',
+     'tressider-2019-03-16_2_test',
+     'tressider-2019-04-26_3_test']
+TRAIN_SCENES = \
+    ['bytes-cafe-2019-02-07_0',
+     'clark-center-2019-02-28_0',
+     'clark-center-intersection-2019-02-28_0',
+     'cubberly-auditorium-2019-04-22_0',
+     'gates-159-group-meeting-2019-04-03_0',
+     'gates-ai-lab-2019-02-08_0',
+     'gates-to-clark-2019-02-28_1',
+     'hewlett-packard-intersection-2019-01-24_0',
+     'huang-basement-2019-01-25_0',
+     'huang-lane-2019-02-12_0',
+     'memorial-court-2019-03-16_0',
+     'meyer-green-2019-03-16_0',
+     'packard-poster-session-2019-03-20_0',
+     'packard-poster-session-2019-03-20_1',
+     'stlc-111-2019-04-19_0',
+     'svl-meeting-gates-2-2019-04-08_0',
+     'tressider-2019-03-16_0',
+     'tressider-2019-03-16_1',
+     'cubberly-auditorium-2019-04-22_1_test',
+     'discovery-walk-2019-02-28_0_test',
+     'food-trucks-2019-02-12_0_test',
+     'gates-ai-lab-2019-04-17_0_test',
+     'gates-foyer-2019-01-17_0_test',
+     'gates-to-clark-2019-02-28_0_test',
+     'hewlett-class-2019-01-23_1_test',
+     'huang-2-2019-01-25_1_test',
+     'indoor-coupa-cafe-2019-02-06_0_test',
+     'lomita-serra-intersection-2019-01-30_0_test',
+     'nvidia-aud-2019-01-25_0_test',
+     'nvidia-aud-2019-04-18_1_test',
+     'outdoor-coupa-cafe-2019-02-06_0_test',
+     'quarry-road-2019-02-28_0_test',
+     'stlc-111-2019-04-19_1_test',
+     'stlc-111-2019-04-19_2_test',
+     'tressider-2019-04-26_0_test',
+     'tressider-2019-04-26_1_test']
+
+# Parameters for min_ade/ADE:
+# ==============================================================================
+min_ade/ADE.name = 'ADE'
+
+# Parameters for min_ade1s/ADE:
+# ==============================================================================
+min_ade1s/ADE.name = 'ADE'
+
+# Parameters for min_ade2s/ADE:
+# ==============================================================================
+min_ade2s/ADE.name = 'ADE'
+
+# Parameters for min_ade3s/ADE:
+# ==============================================================================
+min_ade3s/ADE.name = 'ADE'
+
+# Parameters for min_ade4s/ADE:
+# ==============================================================================
+min_ade4s/ADE.name = 'ADE'
+
+# Parameters for ml_ade/ADE:
+# ==============================================================================
+ml_ade/ADE.name = 'ADE'
+
+# Parameters for ml_ade1s/ADE:
+# ==============================================================================
+ml_ade1s/ADE.name = 'ADE'
+
+# Parameters for ml_ade2s/ADE:
+# ==============================================================================
+ml_ade2s/ADE.name = 'ADE'
+
+# Parameters for ml_ade3s/ADE:
+# ==============================================================================
+ml_ade3s/ADE.name = 'ADE'
+
+# Parameters for ml_ade4s/ADE:
+# ==============================================================================
+ml_ade4s/ADE.name = 'ADE'
+
+# Parameters for get_metrics:
+# ==============================================================================
+get_metrics.eval_metrics = \
+    {'loss': @metrics.Mean,
+     'loss_orientation': @metrics.Mean,
+     'loss_position': @metrics.Mean,
+     'min_ade': @min_ade/metrics.ade.MinADE,
+     'min_ade1s': @min_ade1s/metrics.ade.MinADE,
+     'min_ade2s': @min_ade2s/metrics.ade.MinADE,
+     'min_ade3s': @min_ade3s/metrics.ade.MinADE,
+     'min_ade4s': @min_ade4s/metrics.ade.MinADE,
+     'ml_ade': @ml_ade/metrics.ade.MLADE,
+     'ml_ade1s': @ml_ade1s/metrics.ade.MLADE,
+     'ml_ade2s': @ml_ade2s/metrics.ade.MLADE,
+     'ml_ade3s': @ml_ade3s/metrics.ade.MLADE,
+     'ml_ade4s': @ml_ade4s/metrics.ade.MLADE,
+     'pos_nll': @pos_nll/metrics.pos_nll.PositionNegativeLogLikelihood,
+     'pos_nll1s': @pos_nll1s/metrics.pos_nll.PositionNegativeLogLikelihood,
+     'pos_nll2s': @pos_nll2s/metrics.pos_nll.PositionNegativeLogLikelihood,
+     'pos_nll3s': @pos_nll3s/metrics.pos_nll.PositionNegativeLogLikelihood,
+     'pos_nll4s': @pos_nll4s/metrics.pos_nll.PositionNegativeLogLikelihood}
+get_metrics.train_metrics = \
+    {'loss': @metrics.Mean,
+     'loss_orientation': @metrics.Mean,
+     'loss_position': @metrics.Mean,
+     'min_ade': @min_ade/metrics.ade.MinADE,
+     'min_ade1s': @min_ade1s/metrics.ade.MinADE,
+     'min_ade2s': @min_ade2s/metrics.ade.MinADE,
+     'min_ade3s': @min_ade3s/metrics.ade.MinADE,
+     'min_ade4s': @min_ade4s/metrics.ade.MinADE,
+     'ml_ade': @ml_ade/metrics.ade.MLADE,
+     'ml_ade1s': @ml_ade1s/metrics.ade.MLADE,
+     'ml_ade2s': @ml_ade2s/metrics.ade.MLADE,
+     'ml_ade3s': @ml_ade3s/metrics.ade.MLADE,
+     'ml_ade4s': @ml_ade4s/metrics.ade.MLADE,
+     'pos_nll': @pos_nll/metrics.pos_nll.PositionNegativeLogLikelihood,
+     'pos_nll1s': @pos_nll1s/metrics.pos_nll.PositionNegativeLogLikelihood,
+     'pos_nll2s': @pos_nll2s/metrics.pos_nll.PositionNegativeLogLikelihood,
+     'pos_nll3s': @pos_nll3s/metrics.pos_nll.PositionNegativeLogLikelihood,
+     'pos_nll4s': @pos_nll4s/metrics.pos_nll.PositionNegativeLogLikelihood}
+
+# Parameters for JRDBDatasetParams:
+# ==============================================================================
+JRDBDatasetParams.eval_scenes = %TEST_SCENES
+JRDBDatasetParams.eval_split = (0.0, 1.0)
+JRDBDatasetParams.features = \
+    ['agents/position', 'agents/keypoints', 'robot/position']
+JRDBDatasetParams.min_distance_to_robot = 7.0
+JRDBDatasetParams.num_agents = 8
+JRDBDatasetParams.num_history_steps = 6
+JRDBDatasetParams.num_pointcloud_points = 512
+JRDBDatasetParams.num_steps = 19
+JRDBDatasetParams.path = \
+    '/cns/is-d/home/tsal/social_nav/datasets/jrdb2022_processed/'
+JRDBDatasetParams.subsample = 5
+JRDBDatasetParams.timestep = 0.33333333333334
+JRDBDatasetParams.train_scenes = %TRAIN_SCENES
+JRDBDatasetParams.train_split = (0.0, 1.0)
+
+# Parameters for Mean:
+# ==============================================================================
+Mean.name = 'mean'
+
+# Parameters for min_ade/MinADE:
+# ==============================================================================
+min_ade/MinADE.cutoff_seconds = None
+
+# Parameters for min_ade1s/MinADE:
+# ==============================================================================
+min_ade1s/MinADE.cutoff_seconds = 1.0
+
+# Parameters for min_ade2s/MinADE:
+# ==============================================================================
+min_ade2s/MinADE.cutoff_seconds = 2.0
+
+# Parameters for min_ade3s/MinADE:
+# ==============================================================================
+min_ade3s/MinADE.cutoff_seconds = 3.0
+
+# Parameters for min_ade4s/MinADE:
+# ==============================================================================
+min_ade4s/MinADE.cutoff_seconds = 4.0
+
+# Parameters for ml_ade/MLADE:
+# ==============================================================================
+ml_ade/MLADE.cutoff_seconds = None
+
+# Parameters for ml_ade1s/MLADE:
+# ==============================================================================
+ml_ade1s/MLADE.cutoff_seconds = 1.0
+
+# Parameters for ml_ade2s/MLADE:
+# ==============================================================================
+ml_ade2s/MLADE.cutoff_seconds = 2.0
+
+# Parameters for ml_ade3s/MLADE:
+# ==============================================================================
+ml_ade3s/MLADE.cutoff_seconds = 3.0
+
+# Parameters for ml_ade4s/MLADE:
+# ==============================================================================
+ml_ade4s/MLADE.cutoff_seconds = 4.0
+
+# Parameters for ModelParams:
+# ==============================================================================
+ModelParams.agents_feature_config = {'agents/position': @AgentPositionEncoder}
+ModelParams.agents_orientation_key = 'agents/orientation'
+ModelParams.agents_position_key = 'agents/position'
+ModelParams.attn_architecture = \
+    ('self-attention',
+     'self-attention',
+     'multimodality_induction',
+     'self-attention',
+     'self-attention-mode',
+     'self-attention',
+     'self-attention-mode')
+ModelParams.drop_prob = 0.1
+ModelParams.feature_embedding_size = 128
+ModelParams.hidden_size = 128
+ModelParams.is_hidden_generator = @BPIsHiddenGenerator
+ModelParams.ln_eps = 1e-06
+ModelParams.mask_style = 'has_historic_data'
+ModelParams.num_conv_filters = (32, 32, 64, 64, 128)
+ModelParams.num_heads = 4
+ModelParams.num_history_steps = 6
+ModelParams.num_modes = 6
+ModelParams.num_steps = 19
+ModelParams.prediction_head = @Prediction2DPositionHeadLayer
+ModelParams.prediction_head_hidden_units = None
+ModelParams.scene_encoder = None
+ModelParams.timestep = 0.33333333333334
+ModelParams.transformer_ff_dim = 128
+
+# Parameters for pos_nll/PositionNegativeLogLikelihood:
+# ==============================================================================
+pos_nll/PositionNegativeLogLikelihood.cutoff_seconds = None
+pos_nll/PositionNegativeLogLikelihood.name = 'PosNLL'
+
+# Parameters for pos_nll1s/PositionNegativeLogLikelihood:
+# ==============================================================================
+pos_nll1s/PositionNegativeLogLikelihood.cutoff_seconds = 1.0
+pos_nll1s/PositionNegativeLogLikelihood.name = 'PosNLL'
+
+# Parameters for pos_nll2s/PositionNegativeLogLikelihood:
+# ==============================================================================
+pos_nll2s/PositionNegativeLogLikelihood.cutoff_seconds = 2.0
+pos_nll2s/PositionNegativeLogLikelihood.name = 'PosNLL'
+
+# Parameters for pos_nll3s/PositionNegativeLogLikelihood:
+# ==============================================================================
+pos_nll3s/PositionNegativeLogLikelihood.cutoff_seconds = 3.0
+pos_nll3s/PositionNegativeLogLikelihood.name = 'PosNLL'
+
+# Parameters for pos_nll4s/PositionNegativeLogLikelihood:
+# ==============================================================================
+pos_nll4s/PositionNegativeLogLikelihood.cutoff_seconds = 4.0
+pos_nll4s/PositionNegativeLogLikelihood.name = 'PosNLL'
+
+# Parameters for TrainingParams:
+# ==============================================================================
+TrainingParams.batch_size = 64
+TrainingParams.batches_per_eval_step = 2000
+TrainingParams.batches_per_train_step = 25000
+TrainingParams.eval_every_n_step = 10000.0
+TrainingParams.global_clipnorm = None
+TrainingParams.loss = @MinNLLPositionMixtureCategoricalCrossentropyLoss
+TrainingParams.peak_learning_rate = 0.0001
+TrainingParams.shuffle_buffer_size = 10000
+TrainingParams.total_train_steps = 5000000.0
+TrainingParams.warmup_steps = 50000.0
