@@ -284,6 +284,3 @@ Audio is captured with `parec` from PulseAudio/PipeWire. Pass
   is capped at 1.24.3 by TensorFlow. The vendored model code only does ordinary
   array work, so this is expected to be fine but has not been verified against
   a live checkpoint.
-- **Other hardcoded paths** remain in `nav2_params/sim_slam.launch.py` and
-  the tracked `.vscode/` directories under `alpaca_launch/`. These affect development and simulation
-  scripts, not the main stack.
